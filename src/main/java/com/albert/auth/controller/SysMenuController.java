@@ -1,11 +1,11 @@
 package com.albert.auth.controller;
 
 
-import com.albert.common.web.result.ApiResult;
-import com.albert.common.web.result.ApiStatus;
 import com.albert.auth.entity.SysMenuEntity;
 import com.albert.auth.param.SysMenuParam;
 import com.albert.auth.service.SysMenuService;
+import com.albert.common.web.result.ApiResult;
+import com.albert.common.web.result.ApiStatus;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
@@ -41,7 +41,7 @@ public class SysMenuController {
     @GetMapping("/all")
     public ApiResult<ArrayList<SysMenuEntity>> findSysMenuTree(/*@RequestParam("a") String a*/) {
         List<SysMenuEntity> sysMenuTree = sysMenuService.findSysMenuTree();
-        return ApiResult.success(sysMenuTree, ApiStatus.SUCCESS);
+        return ApiResult.ok2(sysMenuTree, ApiStatus.SUCCESS);
     }
 
     @ApiOperation("ROLE_test")
@@ -66,7 +66,7 @@ public class SysMenuController {
     @GetMapping("/param")
     public ApiResult<ArrayList<SysMenuEntity>> findAllByEntity(@Validated SysMenuParam param) {
         //List<SysMenuEntity> sysMenuTree = sysMenuService.findAllByEntity(param);
-        return ApiResult.success(Collections.emptyList(), ApiStatus.SUCCESS);
+        return ApiResult.ok2(Collections.emptyList(), ApiStatus.SUCCESS);
     }
 
     @GetMapping("/test2")

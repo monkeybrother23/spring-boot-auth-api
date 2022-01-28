@@ -7,9 +7,9 @@
         <artifactId>spring-boot-common-api</artifactId>
         <version>0.0.1</version>
     </parent>
-    <artifactId>demo-auth-api</artifactId>
-    <name>demo-auth-api</name>
-    <description>demo-auth-api</description>
+    <artifactId>spring-boot-auth-api</artifactId>
+    <name>spring-boot-auth-api</name>
+    <description>spring-boot-auth-api</description>
 
     <dependencies>
         <dependency>

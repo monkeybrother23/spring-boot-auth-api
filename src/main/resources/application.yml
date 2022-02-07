@@ -7,3 +7,6 @@ spring:
      dev: 
      - "dev"
      - "dev-db"
+swagger:
+  config:
+    header: "Authorization"

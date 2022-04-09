@@ -4,7 +4,7 @@ package com.albert.auth.controller;
 import com.albert.auth.entity.SysMenuEntity;
 import com.albert.auth.param.SysMenuParam;
 import com.albert.auth.service.SysMenuService;
-import com.albert.common.web.result.ApiResult;
+import com.albert.common.web.result.ApiModel;
 import com.albert.common.web.result.ApiStatus;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -39,15 +39,15 @@ public class SysMenuController {
     @ApiOperation("test")
     @PreAuthorize("hasAuthority('test')")
     @GetMapping("/all")
-    public ApiResult<ArrayList<SysMenuEntity>> findSysMenuTree(/*@RequestParam("a") String a*/) {
+    public ApiModel<ArrayList<SysMenuEntity>> findSysMenuTree(/*@RequestParam("a") String a*/) {
         List<SysMenuEntity> sysMenuTree = sysMenuService.findSysMenuTree();
-        return ApiResult.ok2(sysMenuTree, ApiStatus.SUCCESS);
+        return ApiModel.ok2(sysMenuTree, ApiStatus.SUCCESS);
     }
 
     @ApiOperation("ROLE_test")
     @PreAuthorize("hasRole('ROLE_test')")
     @GetMapping("/date")
-    public ApiResult<LocalDateTime> dateTest() {
+    public ApiModel<LocalDateTime> dateTest() {
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter pattern = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String format = pattern.format(now);
@@ -58,20 +58,20 @@ public class SysMenuController {
         if (logger.isDebugEnabled()) {
             logger.debug(dateTime.toString());
         }
-        return ApiResult.ok(now, ApiStatus.SUCCESS);
+        return ApiModel.ok(now, ApiStatus.SUCCESS);
     }
 
     @ApiOperation("demo:read")
     @PreAuthorize("hasAuthority('demo:read')")
     @GetMapping("/param")
-    public ApiResult<ArrayList<SysMenuEntity>> findAllByEntity(@Validated SysMenuParam param) {
+    public ApiModel<ArrayList<SysMenuEntity>> findAllByEntity(@Validated SysMenuParam param) {
         //List<SysMenuEntity> sysMenuTree = sysMenuService.findAllByEntity(param);
-        return ApiResult.ok2(Collections.emptyList(), ApiStatus.SUCCESS);
+        return ApiModel.ok2(Collections.emptyList(), ApiStatus.SUCCESS);
     }
 
     @GetMapping("/test2")
-    public ApiResult<LocalDateTime> test02() {
+    public ApiModel<LocalDateTime> test02() {
         LocalDateTime now = LocalDateTime.now();
-        return ApiResult.ok(now, ApiStatus.SUCCESS);
+        return ApiModel.ok(now, ApiStatus.SUCCESS);
     }
 }

@@ -2,6 +2,7 @@ package com.albert.auth.mapper;
 
 import com.albert.auth.entity.SysMenuEntity;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -10,5 +11,9 @@ import java.util.List;
  */
 @Mapper
 public interface SysMenuMapper {
-    List<SysMenuEntity> findAll();
+    List<SysMenuEntity> findSysMenu();
+
+    List<SysMenuEntity> findSysMenuByPid(@Param("pid") String pid);
+
+    int deleteSysMenuById(String id);
 }

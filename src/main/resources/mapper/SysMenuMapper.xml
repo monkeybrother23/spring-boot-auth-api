@@ -5,17 +5,40 @@
 
 <mapper namespace="com.albert.auth.mapper.SysMenuMapper">
     <resultMap id="SysMenuEntityMap" type="com.albert.auth.entity.SysMenuEntity">
-        <result column="id" property="id"/>
-        <result column="name" property="name"/>
-        <result column="orderNo" property="orderNo"/>
+        <result property="id" column="id"/>
+        <result property="name" column="menu_name"/>
+        <result property="orderNo" column="order_no"/>
         <result column="pid" property="pid"/>
     </resultMap>
-    <select id="findAll" resultMap="SysMenuEntityMap">
-        select pk_id,
-               name,
-               age,
-               sex,
-               hobby
-        from demo.demo
+
+    <select id="findSysMenu" resultMap="SysMenuEntityMap">
+        SELECT id,
+               menu_name,
+               order_no,
+               pid,
+               version_no,
+               create_time,
+               create_by,
+               update_time,
+               update_by
+        FROM develop.sys_menu sm
     </select>
+    <select id="findSysMenuByPid" resultMap="SysMenuEntityMap">
+        SELECT id,
+               menu_name,
+               order_no,
+               pid,
+               version_no,
+               create_time,
+               create_by,
+               update_time,
+               update_by
+        FROM develop.sys_menu sm
+        WHERE sm.pid = #{pid}
+    </select>
+    <delete id="deleteSysMenuById">
+        DELETE
+        FROM develop.sys_menu sm
+        WHERE sm.id = #{id}
+    </delete>
 </mapper>

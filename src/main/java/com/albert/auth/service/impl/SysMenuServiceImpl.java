@@ -3,13 +3,15 @@ package com.albert.auth.service.impl;
 import com.albert.auth.entity.SysMenuEntity;
 import com.albert.auth.mapper.SysMenuMapper;
 import com.albert.auth.service.SysMenuService;
+import com.albert.common.web.result.ApiModel;
+import com.albert.common.web.result.ApiStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class SysMenuServiceImpl implements SysMenuService {
@@ -21,12 +23,12 @@ public class SysMenuServiceImpl implements SysMenuService {
     }
 
     @Override
-    public List<SysMenuEntity> findSysMenuTree() {
-        List<SysMenuEntity> allSysMenu = sysMenuMapper.findAll();
+    public List<SysMenuEntity> findSysMenu() {
+        List<SysMenuEntity> allSysMenu = sysMenuMapper.findSysMenu();
         //根节点
         List<SysMenuEntity> rootSysMenu = new ArrayList<>();
         for (SysMenuEntity nav : allSysMenu) {
-            if (StringUtils.hasText(nav.getPid())) { //父节点是0的，为根节点。
+            if (Objects.isNull(nav.getPid())) { //根节点
                 rootSysMenu.add(nav);
             }
         }
@@ -44,7 +46,6 @@ public class SysMenuServiceImpl implements SysMenuService {
         }));
         return rootSysMenu;
     }
-
 
     /**
      * 获取子节点
@@ -74,4 +75,18 @@ public class SysMenuServiceImpl implements SysMenuService {
         return childList;
     }
 
+    @Override
+    public ApiModel<String> deleteSysMenuById(String id) {
+        List<SysMenuEntity> sysMenuEntities = sysMenuMapper.findSysMenuByPid(id);
+        if (sysMenuEntities.isEmpty()) {
+            int i = sysMenuMapper.deleteSysMenuById(id);
+            if (i > 0) {
+                return ApiModel.ok(ApiStatus.SUCCESS);
+            } else {
+                return ApiModel.fail("删除失败",ApiStatus.FAIL);
+            }
+        } else {
+            return ApiModel.fail("存在子菜单无法删除", ApiStatus.FAIL);
+        }
+    }
 }

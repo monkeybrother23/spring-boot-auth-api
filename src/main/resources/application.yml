@@ -6,7 +6,8 @@ spring:
     group:
       dev:
         - "dev"
-        - "dev-mysql"
+        - "dev-pg"
+        - "dev-redis"
 swagger:
   token:
     header: "Authorization"

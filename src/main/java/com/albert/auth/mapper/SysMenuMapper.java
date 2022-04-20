@@ -16,4 +16,6 @@ public interface SysMenuMapper {
     List<SysMenuEntity> findSysMenuByPid(@Param("pid") String pid);
 
     int deleteSysMenuById(String id);
+
+    int addSysMenu(SysMenuEntity entity);
 }

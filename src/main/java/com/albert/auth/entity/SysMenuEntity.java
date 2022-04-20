@@ -1,36 +1,33 @@
 package com.albert.auth.entity;
 
-import java.io.Serializable;
-import java.util.List;
+import com.albert.common.web.entity.BaseEntity;
+
+import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 import java.util.StringJoiner;
 
 
-public class SysMenuEntity implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
+public class SysMenuEntity extends BaseEntity {
     // 菜单id
     private String id;
 
     // 菜单名称
+    @NotBlank
     private String name;
 
     // 菜单顺序
+    @NotBlank
     private int orderNo;
 
     // 父菜单id
     private String pid;
-
-    // 子菜单
-    private List<SysMenuEntity> children;
 
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
-        this.id = id == null ? null : id.trim();
+        this.id = id;
     }
 
     public String getName() {
@@ -38,7 +35,7 @@ public class SysMenuEntity implements Serializable {
     }
 
     public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+        this.name = name;
     }
 
     public int getOrderNo() {
@@ -54,36 +51,21 @@ public class SysMenuEntity implements Serializable {
     }
 
     public void setPid(String pid) {
-        this.pid = pid == null ? null : pid.trim();
-    }
-
-    public List<SysMenuEntity> getChildren() {
-        return children;
-    }
-
-    public void setChildren(List<SysMenuEntity> children) {
-        this.children = children;
+        this.pid = pid;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof SysMenuEntity)) {
-            return false;
-        }
+        if (this == o) return true;
+        if (!(o instanceof SysMenuEntity)) return false;
+        if (!super.equals(o)) return false;
         SysMenuEntity that = (SysMenuEntity) o;
-        return orderNo == that.orderNo &&
-                Objects.equals(id, that.id) &&
-                Objects.equals(name, that.name) &&
-                Objects.equals(pid, that.pid) &&
-                Objects.equals(children, that.children);
+        return orderNo == that.orderNo && Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(pid, that.pid);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, orderNo, pid, children);
+        return Objects.hash(super.hashCode(), id, name, orderNo, pid);
     }
 
     @Override
@@ -93,7 +75,6 @@ public class SysMenuEntity implements Serializable {
                 .add("name='" + name + "'")
                 .add("orderNo=" + orderNo)
                 .add("pid='" + pid + "'")
-                .add("children=" + children)
                 .toString();
     }
 }

@@ -18,6 +18,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 
 //@Tag(name = "页面初始化")
 @RestController
@@ -51,8 +53,31 @@ public class IndexController {
     }
 
     @GetMapping("/test2")
-    public ApiModel<LocalDateTime> test02() {
-        LocalDateTime now = LocalDateTime.now();
-        return ApiModel.ok(now, ApiStatus.SUCCESS);
+    public ApiModel<ArrayList<HashMap<String, String>>> test02() {
+
+        List<HashMap<String, String>> list = new ArrayList<>();
+        HashMap<String, String> map1 = new HashMap<>();
+        map1.put("key", "1");
+        map1.put("jira", "1235");
+        map1.put("status", "open");
+        map1.put("odc", "A");
+        map1.put("updateTime", "2022-4-5 14:30:00");
+        HashMap<String, String> map2 = new HashMap<>();
+        map2.put("key", "2");
+        map2.put("jira", "1255");
+        map2.put("status", "open");
+        map2.put("odc", "A");
+        map2.put("updateTime", "2022-4-6 14:30:00");
+        HashMap<String, String> map3 = new HashMap<>();
+        map3.put("key", "4");
+        map3.put("jira", "1265");
+        map3.put("status", "open");
+        map3.put("odc", "B");
+        map3.put("updateTime", "2022-4-6 14:30:00");
+        list.add(map1);
+        list.add(map2);
+        list.add(map3);
+        return ApiModel.ok2(list, ApiStatus.SUCCESS);
     }
+
 }

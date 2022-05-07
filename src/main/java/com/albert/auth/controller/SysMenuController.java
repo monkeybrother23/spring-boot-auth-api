@@ -37,7 +37,7 @@ public class SysMenuController {
     @GetMapping("/show")
     public ApiModel<ArrayList<SysMenuModel>> findSysMenu() {
         List<SysMenuModel> sysMenuTree = sysMenuService.findSysMenu();
-        return ApiModel.ok2(sysMenuTree, ApiStatus.QUERY_SUCCESS);
+        return ApiModel.ok(sysMenuTree, ApiStatus.QUERY_SUCCESS);
     }
 
     @ApiOperation("删除")

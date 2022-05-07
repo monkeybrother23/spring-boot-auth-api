@@ -3,6 +3,7 @@ package com.albert.auth.controller;
 
 import com.albert.auth.entity.SysMenuEntity;
 import com.albert.auth.param.SysMenuParam;
+import com.albert.common.web.exception.ApiException;
 import com.albert.common.web.result.ApiModel;
 import com.albert.common.web.result.ApiStatus;
 import io.swagger.annotations.ApiOperation;
@@ -41,7 +42,7 @@ public class IndexController {
         if (logger.isDebugEnabled()) {
             logger.debug(dateTime.toString());
         }
-        return ApiModel.ok(now, ApiStatus.SUCCESS);
+        return ApiModel.success(now, ApiStatus.SUCCESS);
     }
 
     @ApiOperation("demo:read")
@@ -49,7 +50,7 @@ public class IndexController {
     @GetMapping("/param")
     public ApiModel<ArrayList<SysMenuEntity>> findAllByEntity(@Validated SysMenuParam param) {
         //List<SysMenuEntity> sysMenuTree = sysMenuService.findAllByEntity(param);
-        return ApiModel.ok2(Collections.emptyList(), ApiStatus.SUCCESS);
+        return ApiModel.ok(Collections.emptyList(), ApiStatus.SUCCESS);
     }
 
     @GetMapping("/test2")
@@ -77,7 +78,7 @@ public class IndexController {
         list.add(map1);
         list.add(map2);
         list.add(map3);
-        return ApiModel.ok2(list, ApiStatus.SUCCESS);
+        return ApiModel.ok(list, ApiStatus.SUCCESS);
     }
 
 }

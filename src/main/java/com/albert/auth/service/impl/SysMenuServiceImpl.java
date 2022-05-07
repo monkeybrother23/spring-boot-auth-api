@@ -94,9 +94,9 @@ public class SysMenuServiceImpl implements SysMenuService {
         if (sysMenuEntities.isEmpty()) {
             int i = sysMenuMapper.deleteSysMenuById(id);
             if (i > 0) {
-                return ApiModel.ok(ApiStatus.DELETE_SUCCESS);
+                return ApiModel.success();
             } else {
-                return ApiModel.fail(ApiStatus.DELETE_FAIL);
+                return ApiModel.fail();
             }
         } else {
             return ApiModel.fail("存在子菜单无法删除", ApiStatus.DELETE_FAIL);
@@ -111,8 +111,8 @@ public class SysMenuServiceImpl implements SysMenuService {
         entity.setUpdateBy(SecurityUtils.getUserName());
         int i = sysMenuMapper.addSysMenu(entity);
         if (i > 0) {
-            return ApiModel.ok(uuid, ApiStatus.SAVE_SUCCESS);
+            return ApiModel.success(uuid, ApiStatus.SAVE_SUCCESS);
         }
-        return ApiModel.ok(uuid, ApiStatus.SAVE_FAIL);
+        return ApiModel.success(uuid, ApiStatus.SAVE_FAIL);
     }
 }

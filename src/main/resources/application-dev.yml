@@ -2,10 +2,6 @@ server:
   port: 8088
   servlet:
     context-path: /demo
-spring:
-  jackson:
-    date-format: yyyy-MM-dd HH:mm:ss
-    time-zone: Asia/Shanghai
 logging:
   level:
     root: info

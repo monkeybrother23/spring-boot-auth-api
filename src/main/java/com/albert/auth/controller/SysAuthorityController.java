@@ -1,7 +1,7 @@
 package com.albert.auth.controller;
 
 
-import com.albert.auth.entity.SysAuthorityEntity;
+import com.albert.auth.model.SysAuthorityModel;
 import com.albert.auth.service.SysAuthorityService;
 import com.albert.common.web.result.ApiModel;
 import com.albert.common.web.result.ApiStatus;
@@ -34,8 +34,8 @@ public class SysAuthorityController {
 
     @ApiOperation("查看")
     @GetMapping("/findAll")
-    public ApiModel<ArrayList<SysAuthorityEntity>> findSysMenu() {
-        List<SysAuthorityEntity> sysAuthority = sysAuthorityService.findSysAuthority();
+    public ApiModel<ArrayList<SysAuthorityModel>> findSysMenu() {
+        List<SysAuthorityModel> sysAuthority = sysAuthorityService.findSysAuthority();
         return ApiModel.ok(sysAuthority, ApiStatus.QUERY_SUCCESS);
     }
 }

@@ -3,7 +3,6 @@ package com.albert.auth.controller;
 
 import com.albert.auth.entity.SysMenuEntity;
 import com.albert.auth.param.SysMenuParam;
-import com.albert.common.web.exception.ApiException;
 import com.albert.common.web.result.ApiModel;
 import com.albert.common.web.result.ApiStatus;
 import io.swagger.annotations.ApiOperation;
@@ -55,7 +54,6 @@ public class IndexController {
 
     @GetMapping("/test2")
     public ApiModel<ArrayList<HashMap<String, String>>> test02() {
-
         List<HashMap<String, String>> list = new ArrayList<>();
         HashMap<String, String> map1 = new HashMap<>();
         map1.put("key", "1");
